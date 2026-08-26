@@ -1,36 +1,51 @@
 # Test-SmoothMQTT
 
-> A Unity/XR project.
+A Unity spike for talking to an MQTT broker — the connectivity groundwork for
+the Home Assistant XR projects.
 
-## 📖 Overview
-A virtual reality / augmented reality exploration and development project focused on building immersive experiences using Unity and C#.
+## Why it exists
 
-## 🛠️ Built With
-* **Engine:** Unity `2022.3.3f1`
-* **Language:** C#
-### 📦 Key Plugins & SDKs
-* **com.unity.collab-proxy** (`2.2.0`)
-* **com.unity.feature.development** (`1.0.1`)
-* **com.unity.textmeshpro** (`3.0.6`)
-* **com.unity.timeline** (`1.7.4`)
-* **com.unity.ugui** (`1.0.0`)
-* **com.unity.visualscripting** (`1.8.0`)
+Before building a smart-home control panel in a headset, the boring question
+had to be answered first: can Unity hold a reliable MQTT connection, subscribe
+to a wildcard topic, publish typed payloads, and survive a broker that
+authenticates? This project is where that was tested, against the same
+`BedroomLights/state`-style topics the XR projects later use.
 
-## 🚀 Getting Started
+It is deliberately not an XR project — there is no headset in the loop, so a
+failure here is an MQTT failure and nothing else.
 
-### Prerequisites
-* Unity Hub and Unity Editor version **`2022.3.3f1`**
+## What's covered
 
-### Installation
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/mohitshukla02/Test-SmoothMQTT.git
-   ```
-2. Open the project via Unity Hub.
-3. Wait for the packages to resolve and load.
+The smoothMQTT example scenes exercise the cases that mattered:
 
-## 📝 License
-**All rights reserved.** This project and its contents are strictly private. Unauthorized copying, modification, distribution, or use of this project, via any medium, is strictly prohibited.
+| Scene | Case |
+|---|---|
+| `001_MQTTBroker` | Broker connection |
+| `002_Receive_Value_Range_LigthGradient` | Subscribing to a value range |
+| `003_Publish_Value_From_Slider_LightGradient` | Publishing from UI input |
+| `004_Eventtrigger_for_static_payload` | Fixed payloads on an event |
+| `005_Working_With_Datatypes` | Typed payloads and converters |
+| `006_Triggers_and_Collisions` | Publishing from scene events |
+| `007_May_I_See_Your_Credentials` | Authenticated brokers |
+| `008_Conditional_Use_of_Sensor_Data` | Conditional subscribers |
+| `101_MQTTBroker_using_SSL` | TLS |
+| `SampleScene` | Scratch scene — wildcard subscribe against the live broker |
+
+## Built with
+
+Unity 2022.3.3f1 · smoothMQTT
+
+## Related
+
+The XR work this fed into:
+[HomeAssistant_VR](https://github.com/mohitshukla02/HomeAssistant_VR) ·
+[HA_Passthrough](https://github.com/mohitshukla02/HA_Passthrough) ·
+[SmartHomeOS](https://github.com/mohitshukla02/SmartHomeOS)
+
+## Third-party assets
+
+Bundles the smoothMQTT package and its example scenes, which remain under
+their own license.
 
 ## License
 
